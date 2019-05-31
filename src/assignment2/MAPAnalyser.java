@@ -115,6 +115,7 @@ public class MAPAnalyser {
     }
     
     //load the initial values of id, sbp & dbp. Calculate MAP & initialize data[]by creating Record Objects.
+    //hardcoded initial  values.
     void loadFromTables(){
         String[] id = {"S03", "S05", "S01", "S00", "S02"};
         //  array for sbp
