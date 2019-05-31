@@ -36,7 +36,7 @@ public class View {
                         }
                         if (flag == 1) {
                             Record r = a.find(id);
-                            //display();
+                            display();
                             System.out.println(r.toString());
                         } else {
                             System.out.println(id + " doesn't exist in record.");
@@ -49,7 +49,7 @@ public class View {
                                     + "map1 cannot be > map2");
                         } else {
                             Record [] data = a.find(map1, map2);
-                            //display();
+                            display();
                             for(Record rec: data) {
                                 System.out.print(rec.toString());
                             }
@@ -63,16 +63,18 @@ public class View {
 
                 case 9: bool = false;
                         break;
+                default: bool = false;
+                        break;
             }
         }
     }
     
-    /* void display() {
+    void display() {
         System.out.println(""
                 + "-----------------------------------------------------------------\n"
                 + "Person Id        SBP         DBP         MAP         Category\n"
                 + "-----------------------------------------------------------------");
-    } */
+    } 
     
     void menu() {
          System.out.println("The following commands are recognised:");

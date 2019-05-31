@@ -18,6 +18,7 @@ public class Record {
    
     
     public Record(String id, int sbp, int dbp, int map, String category) {
+        //Initialize member variables
         this.id = id;
         this.sbp = sbp;
         this.dbp = dbp;

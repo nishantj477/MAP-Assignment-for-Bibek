@@ -18,6 +18,6 @@ public class Assignment2 {
         // TODO code application logic here
         MAPAnalyser a = new MAPAnalyser(); 
         View v = new View( a ); 
-        v.commandLoop();		// does nothing
+        v.commandLoop();
     }
 }

@@ -15,27 +15,29 @@ public class MAPAnalyser {
     private int nrecords;
     
     public MAPAnalyser() {
-        nrecords = 3;
+        //Initialize member variables
+        nrecords = 5;
 	data = new Record[nrecords];
+        //load arrays with id, sbp, dbp values and sort data[] by id in ascending.
         loadFromTables();
         SortById(); 
     }   
     
     //Implemented using binary search
     public Record find(String id) {
-        int l = 0, r = data.length - 1; 
-        while (l <= r) { 
-            int m = l + (r - l) / 2; 
-            int res = id.compareTo(data[m].getId()); 
-            // Check if x is present at mid 
+        int low = 0, high = data.length - 1; 
+        while (low <= high) { 
+            int mid = low + (high - low) / 2; 
+            int res = id.compareTo(data[mid].getId()); 
+            // Check if id is present at mid 
             if (res == 0) 
-                 return data[m]; 
-            // If x greater, ignore left half 
+                 return data[mid]; 
+            // If id is greater, ignore left half 
             if (res > 0) 
-                l = m + 1; 
+                low = mid + 1; 
             // If x is smaller, ignore right half 
             else
-                r = m - 1; 
+                high = mid - 1; 
         } 
         return null; 
     }
@@ -72,8 +74,8 @@ public class MAPAnalyser {
     }
     
     public int median() {
-        //get the MAP values to an array.
         int median = 0;
+        //get the MAP values to an array.
         int[] arr = new int[nrecords];
         for(int i = 0; i < nrecords; i++) {
             arr[i] = data[i].getMap();
@@ -98,10 +100,12 @@ public class MAPAnalyser {
         return median;  
     }
     
+    //implemented using selection sort
     public void SortById() {
         for (int i=0; i<data.length-1; i++) {
             for (int j=i+1; j<data.length; j++) {
-                if (data[i].getId().compareTo(data[j].getId()) > 0) {
+                //If i+1 is smaller than i, perform swap
+                if (data[i].getId().compareTo(data[j].getId()) > 0) { 
                     Record rec = data[j];
                     data[j] = data[i];
                     data[i] = rec;
@@ -110,12 +114,13 @@ public class MAPAnalyser {
         }
     }
     
+    //load the initial values of id, sbp & dbp. Calculate MAP & initialize data[]by creating Record Objects.
     void loadFromTables(){
-        String[] id = {"S03", "S02", "S01"};
+        String[] id = {"S03", "S05", "S01", "S00", "S02"};
         //  array for sbp
-        int[] sbp= {80, 60, 110};
+        int[] sbp= {80, 60, 110, 65, 85};
         // array for dbp
-        int[] dbp = {70, 50, 100};
+        int[] dbp = {70, 50, 100, 99, 111};
         for (int i = 0; i < nrecords; i++) {
             // calculate  the map data
             int map = MapValue(sbp[i], dbp[i]);
@@ -124,6 +129,7 @@ public class MAPAnalyser {
         }
     }
     
+    //method to categorise MAP
     String classify(int map) {
         if (map > 100) {
             return "high";
@@ -134,6 +140,7 @@ public class MAPAnalyser {
         }
     }
         
+    //method to calculate MAP
     int MapValue(int sbp, int dbp) {
             return (int)(((1.0/3.0) * sbp) + ((2.0/3.0) * dbp));
     }
