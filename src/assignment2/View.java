@@ -38,6 +38,7 @@ public class View {
                             Record r = a.find(id);
                             display();
                             System.out.println(r.toString());
+                            menu();
                         } else {
                             System.out.println(id + " doesn't exist in record.");
                         }
@@ -53,12 +54,14 @@ public class View {
                             for(Record rec: data) {
                                 System.out.print(rec.toString());
                             }
-                        }   
+                        }
+                        menu();
                         break;
 
                 case 3: System.out.println("Lowest MAP is " + a.lowest() + 
                         "\nHighest MAP is " + a.highest() + 
                         "\nMedian MAP is " + a.median() + "\n");
+                         menu();
                         break;
 
                 case 9: bool = false;
